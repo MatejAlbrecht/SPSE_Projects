@@ -1,0 +1,9 @@
+{
+  "name": "SPSE_Projects",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {},
+  "dependencies": {
+    "nuxt": "^3.0.0"
+  }
+}
