@@ -3,7 +3,7 @@
       <h1>Zoznam ľudí</h1>
       <section class="list">
         <section v-for="person of persons" v-bind:key="person"
-        v-bind:class="{'card-container':true,'card':true,'adult':person.age>=18,'teen':person.age<18  }"><!--v tomto prípade clase priradíme objekt, ktorého vlastnosti predstavujú jednotlivé triedy a ich hodnoti predstavujú bool vyjadrujúci, kedy sa má daná trieda pridať danému elemntu-->
+        v-bind:class="{'card-container':true,'card':true,'adult':ageConvertor(person)>=18,'teen':ageConvertor(person)<18  }"><!--v tomto prípade clase priradíme objekt, ktorého vlastnosti predstavujú jednotlivé triedy a ich hodnoti predstavujú bool vyjadrujúci, kedy sa má daná trieda pridať danému elemntu-->
 		<!--alebo takto tu to poriešime ternárnym operátorom...
 		<section v-for="person of persons" v-bind:key="person" 
 		v-bind:class="person.age>=18 ? 'adult card-container card' : 'card-container card'">
@@ -11,7 +11,7 @@
           <article class="info">
             <div class="name">{{person.fname}} {{person.lname}}</div>
 			<div class="birthday">{{person.birthday.day}}. {{person.birthday.month}}. {{person.birthday.year}} </div>
-			<div class="age">{{person.age}}<span class="year-title"> Years old</span></div>
+			<div class="age">{{ageConvertor(person)}}<span class="year-title"> Years old</span></div>
           </article>
           <footer class="footer-card">
             <span class="btn edit">Edit</span>
@@ -80,18 +80,11 @@
 		},
 	]
 
-	const ageConvertor = (persons) => {
+	const ageConvertor = (person) => {
 		const currentYear = new Date().getFullYear();
-		let age
-
-		persons.forEach(item => {
-			item.age = currentYear - item.birthday.year  
-			console.log(age)
-			return age;
-		});
+	
+		return currentYear - person.birthday.year;
 	}
-
-	ageConvertor(persons);
 	
 </script>
 
